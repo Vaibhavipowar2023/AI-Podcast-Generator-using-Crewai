@@ -193,7 +193,7 @@ output/audio/podcast.mp3 ← Final MP3 podcast episode
 This project uses **two different LLMs** strategically to optimize cost and quality:
 
 - **Small model** (`llama-3.1-8b-instant`) for research agents — fast, cheap, good at following instructions
-- **Big model** (`gemini-1.5-flash`) for creative agents — better reasoning, natural dialogue, humor
+- **Big model** (`gemini-2.5-flash`) for creative agents — better reasoning, natural dialogue, humor
 
 This pattern reduces token costs by ~60% while maintaining high output quality for the creative tasks that matter most.
 
