@@ -1,0 +1,89 @@
+research_task:
+  description: >
+    Research {topic} and find:
+    1. 5 surprising or little-known facts
+    2. The biggest controversies or debates around it
+    3. Why people care about this topic right now
+    4. Any famous quotes or expert opinions on it
+    Search multiple sources for diverse perspectives.
+  expected_output: >
+    A structured research brief with sections:
+    Key Facts (5 bullet points), Current Debates (3 points),
+    Why It Matters Now (2-3 sentences), Notable Quotes (2 max).
+    Maximum 400 words.
+  agent: topic_researcher
+
+news_task:
+  description: >
+    Find the latest news and developments about {topic}
+    from the past 3 months. Look for breaking developments,
+    new research, viral moments, or public debates.
+  expected_output: >
+    A bullet list of 4-6 recent news items about {topic},
+    each with a headline and one sentence summary.
+    Include approximate dates where possible.
+  agent: news_gatherer
+
+script_task:
+  description: >
+    Using the research and news gathered about {topic},
+    write a full podcast script for two hosts:
+    - ALEX: calm, factual, loves explaining things clearly
+    - SAM: curious, slightly skeptical, adds humor and questions
+
+    Format every line EXACTLY like this:
+    ALEX: [dialogue here]
+    SAM: [dialogue here]
+
+    Structure:
+    - Opening hook (30 seconds of banter)
+    - Main topic intro by Alex
+    - Back and forth discussion with at least 8 exchanges
+    - Sam challenges one point Alex makes
+    - Surprising fact reveal
+    - Closing thoughts from both
+    Total: 600-800 words of dialogue only.
+  expected_output: >
+    A complete podcast script formatted with ALEX: and SAM: labels
+    on every single line. No stage directions, no descriptions,
+    just pure dialogue. Every line starts with either ALEX: or SAM:.
+  agent: script_writer
+  context:
+    - research_task
+    - news_task
+
+polish_task:
+  description: >
+    Take the podcast script about {topic} and:
+    1. Add 2-3 genuinely funny jokes or witty one-liners
+    2. Make the dialogue sound more natural and less formal
+    3. Ensure Alex and Sam each speak roughly equal amounts
+    4. Add a strong opening hook line and memorable closing line
+    5. Keep the ALEX: and SAM: format exactly as is on every line
+
+    Do NOT add any stage directions or descriptions.
+    Output must be ONLY dialogue lines starting with ALEX: or SAM:
+  expected_output: >
+    The polished final podcast script with ALEX: and SAM: on every
+    line. Pure dialogue only. 600-800 words. Ready for audio production.
+  agent: dialogue_polisher
+  context:
+    - script_task
+
+audio_task:
+  description: >
+    Take the final polished podcast script about {topic} and
+    produce the audio file by:
+    1. Use the Generate Podcast Audio tool with the complete script
+    2. The tool will handle splitting by speaker, TTS generation,
+       and merging into final MP3
+    3. Report the output file path when complete
+
+    Pass the COMPLETE script text to the tool exactly as received.
+  expected_output: >
+    Confirmation that the podcast MP3 was successfully generated
+    with the output file path. Report total lines processed
+    for Alex and Sam separately.
+  agent: audio_producer
+  context:
+    - polish_task

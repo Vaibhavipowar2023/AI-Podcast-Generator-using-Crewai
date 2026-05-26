@@ -1,0 +1,18 @@
+[project]
+name = "ai-podcast-generator"
+version = "0.1.0"
+description = "AI Podcast Generator using CrewAI + Groq + edge-tts"
+requires-python = ">=3.11"
+
+dependencies = [
+    "crewai>=0.80.0,<1.0.0",
+    "crewai-tools>=0.14.0,<1.0.0",
+    "langchain-groq>=0.1.9",
+    "tavily-python>=0.5.0",
+    "edge-tts>=6.1.0",
+    "pydub>=0.25.1",
+    "streamlit>=1.38.0",
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.4.2,<3.0.0",
+    "langchain-google-genai>=1.0.0",
+]
